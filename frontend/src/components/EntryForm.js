@@ -1,5 +1,4 @@
 import React, {useState, setState} from 'react';
-import PropTypes from 'prop-types';
 
 const EntryForm = (props) => {
 
@@ -60,14 +59,12 @@ const EntryForm = (props) => {
             //validate and stuff 
         });
         const inputs;*/
-        console.log("hello handle_entry")
         submitForm(state);
     }
 
 
     const submitForm = (e) => {
-        if (props.logged_in || true) {
-            /*
+        if (props.logged_in) {
             fetch('http://localhost:8000/journal/current_user/', {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`
@@ -75,16 +72,18 @@ const EntryForm = (props) => {
             })
             .then(res => res.json())
             .then(user => {
-            */
-            e['user'] = 2;
-            fetch('http://localhost:8000/journal/',{
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                method: 'POST',
-                body: JSON.stringify(e),
+                console.log(user)
+                e['user'] = 2;
+                fetch('http://localhost:8000/journal/',{
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(e),
+                });
             });
-            //});
+        } else {
+            alert("please sign in");
         }
     }
 

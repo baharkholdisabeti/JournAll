@@ -6,11 +6,32 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken            
+from .serializers import UserSerializer, UserSerializerWithToken        
+from datetime import datetime
 
 class JournalView(viewsets.ModelViewSet):      
-  serializer_class = JournalSerializer          
-  queryset = JournalEntry.objects.all()      
+    serializer_class = JournalSerializer          
+    queryset = JournalEntry.objects.all()  
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = JournalEntry.objects.all()
+        user = self.request.query_params.get('user', None) 
+        month = self.request.query_params.get('month', datetime.now().month) 
+        year = self.request.query_params.get('year', datetime.now().year)
+        day = self.request.query_params.get('day', None) 
+        # localhost:8000/journal/?user=4&month=1&day=2
+        if user is not None:
+            if day is None:
+                #return by month
+                return queryset.filter(user=user, date__month=month, date__year=year) 
+            else:
+                #return a full day 
+                return queryset.filter(user=user, date__day=day, date__month=month, date__year=year)
+        return 
 
 @api_view(['GET'])
 def current_user(request):

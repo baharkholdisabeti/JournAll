@@ -19,29 +19,6 @@ class App extends Component {
         }
     }
 
-    submitForm = (e) => {
-        if (this.state.logged_in) {
-            fetch('http://localhost:8000/journal/current_user/', {
-                headers: {
-                    Authorization: `JWT ${localStorage.getItem('token')}`
-                }
-            })
-            .then(res => res.json())
-            .then(user => {
-                e['user'] = user
-                fetch('http://localhost:8000/journal/',{
-                    headers: {
-                        Authorization: `JWT ${localStorage.getItem('token')}`,
-                        'Content-Type': 'application/json'
-                    },
-                    method: 'POST',
-                    body: JSON.stringify(e),
-                });
-                alert(":D");
-            });
-        }
-    }
-
     componentDidMount() {
         if (this.state.logged_in) {
             fetch('http://localhost:8000/journal/current_user/', {
@@ -129,12 +106,12 @@ class App extends Component {
                 display_form={this.display_form}
                 handle_logout={this.handle_logout}
                 />
-                {form}
                 <h3>
                 {this.state.logged_in
                     ? `Hello, ${this.state.username}`
                     : 'Please Log In'}
                 </h3>
+                {form}
             </div>
         );
     }
