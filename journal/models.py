@@ -8,7 +8,7 @@ class JournalEntry(models.Model):
     entry_ID = models.AutoField(primary_key=True)
     title = models.CharField(max_length=250, default="")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    entry = models.TextField(max_length=2500)
+    entry = models.TextField(max_length=25000)
     avg_mood = models.IntegerField(default=-1)
     sleep = models.IntegerField(default=-1)
     exercise = models.IntegerField(default=-1)

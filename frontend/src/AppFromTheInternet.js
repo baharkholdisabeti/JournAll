@@ -27,7 +27,7 @@ class App extends Component {
   }
   refreshList = () => {
     axios
-      .get("http://localhost:8000/api/todos/")
+      .get("http://localhost:8000/journal/")
       .then(res => this.setState({  journalEntryList: res.data }))
       .catch(err => console.log(err));
   };
@@ -62,14 +62,14 @@ class App extends Component {
     );
     return newItems.map(item => (
       <li
-        key={item.id}
+        key={item.entry_id}
         className="list-group-item d-flex justify-content-between align-items-center"
       >
         <span
           className={`todo-title mr-2 ${
             this.state.viewCompleted ? "completed-todo" : ""
           }`}
-          title={item.description}
+          title={item.entry}
         >
           {item.title}
         </span>
@@ -98,21 +98,30 @@ class App extends Component {
     this.toggle();
     if (item.id) {
       axios
-        .put(`http://localhost:8000/api/todos/${item.id}/`, item)
+        .put(`http://localhost:8000/journal/${item.entry_id}/`, item)
         .then(res => this.refreshList());
       return;
     }
     axios
-      .post("http://localhost:8000/api/todos/", item)
+      .post("http://localhost:8000/journal/", item)
       .then(res => this.refreshList());
   };
   handleDelete = item => {
     axios
-      .delete(`http://localhost:8000/api/todos/${item.id}`)
+      .delete(`http://localhost:8000/journal/${item.entry_id}`)
       .then(res => this.refreshList());
   };
   createItem = () => {
-    const item = { title: "", description: "", completed: false };
+    /*
+    title: "",
+    entry: "",
+    avg_mood: -1,
+    exercise: -1,
+    down_time: -1,
+    healthy_eating: -1,
+    sleep: -1,
+    */
+    const item = { title: "", entry: "", avg_mood: 0, exercise: 0, down_time: 0, healthy_eating: 0, sleep: 0 };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {
@@ -127,7 +136,7 @@ class App extends Component {
             <div className="card p-3">
               <div className="">
                 <button onClick={this.createItem} className="btn btn-primary">
-                  Add task
+                  Add Entry
                 </button>
               </div>
               {this.renderTabList()}
