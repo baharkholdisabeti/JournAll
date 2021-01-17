@@ -23,13 +23,11 @@ const Login = () => {
         const name = e.target.name;
         const value = e.target.value;
         state[name] = value;
-        console.log(state)
         setState(state);
     };
 
     const handle_login = (e, data) => {
         e.preventDefault();
-        console.log( data )
         fetch('http://localhost:8000/token-auth/', {
             method: 'POST',
                 headers: {
@@ -43,7 +41,6 @@ const Login = () => {
             localStorage.setItem('id', json.user.id);
             
             setState({...state, logged_in: true})
-            console.log(state)
         });
     };
 

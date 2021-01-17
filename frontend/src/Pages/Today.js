@@ -68,7 +68,12 @@ const CustomSlider = ({val, onChange}) => {
 
 /* 
 const getRecomendedVideos = (obj) => {
-    const = [[sleep, 3], [exersize]]
+    const = [['sleep',sleep ], ['exersize',exersize ], ['', ], ['', ]]
+    const first = Math.floor(Math.random() * 10)%5;     // returns a random integer from 0 to 9
+    const sec = Math.floor(Math.random() * 10)%5;     // returns a random integer from 0 to 9
+    const third = Math.floor(Math.random() * 10)%5;     // returns a random integer from 0 to 9
+    
+
 }
 
 */
@@ -76,11 +81,10 @@ const getRecomendedVideos = (obj) => {
 
 
 const Today = () => {
-    const videosArr = [{title: "The movie", link:"https://www.youtube.com/watch?v=W9BjUoot2Eo&ab_channel=DennisIvy"},
-    {title: "The movie", link: "https://www.youtube.com/watch?v=W9BjUoot2Eo&ab_channel=DennisIvy"},
-    {title: "The movie", link: "https://www.youtube.com/watch?v=W9BjUoot2Eo&ab_channel=DennisIvy"} ]
+    const videosArr = [{"title": "How to Break Your Procrastination Habit (For Good)", "link": "https://www.youtube.com/watch?v=YokGiK29k74&ab_channel=ThomasFrank"},
+    {"title": "How I organise my whole life in Notion", "link": "https://www.youtube.com/watch?v=4WDspvXDKSg&t=1012s&ab_channel=muchelleb"}]
 
-    const [state, setState] = useState({activeStep: 1, mood: 3, entry: "", sleep: 3, exersize: 3, time: 3, food: 3, title: "", showModal: false, videos: []})
+    const [state, setState] = useState({activeStep: 1, mood: 3, entry: "", sleep: 3, exercise: 3, time: 3, food: 3, title: "", showModal: false, videos: []})
     console.log(state)
     const is1Active = state.activeStep === 1
     const is2Active = state.activeStep === 2
@@ -92,28 +96,37 @@ const Today = () => {
         setState({...state, mood: val})
     }
 
-    
     const handle_entry = (e) =>{
         e.preventDefault();
         submitForm(state);
     }
 
-
     const submitForm = (state) => {
-        if (props.logged_in) {
-            state['user'] = localStorage.getItem('id');
+        const request = {title: state.title,
+        entry: state.entry,
+        avg_mood: state.mood,
+        sleep: state.sleep,
+        exercise: state.exercise,
+        down_time: state.time,
+        healthy_eating: state.food }
+
+        console.log(request)
+
+        if (true) {
+            console.log(localStorage.getItem('id'));
+            request['user'] = localStorage.getItem('id');
             fetch('http://localhost:8000/journal/', {
                 method: 'POST',
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(state),
+                body: JSON.stringify(request),
             })
             .then(res => res.json())
             .then(json => {
                 console.log(json);
-            })
+            }).then(setState({...state, videos: videosArr}))
             .catch(e=>{console.log(e)});
         }
         else {
@@ -176,7 +189,7 @@ const Today = () => {
                 <div className="QuestionsWrapper">
                     <p className="HealthStatQuestionPre"> How happy are you with how...</p>
                     <div className="QuestionWrapper2">
-                        <p className="HealthStatQuestion">much you exercised today?</p> <SelectPicker searchable={false} size="md" data={dataValues} cleanable={false} onChange={v=> setState({...state, exersize: Number(v)})}/>
+                        <p className="HealthStatQuestion">much you exercised today?</p> <SelectPicker searchable={false} size="md" data={dataValues} cleanable={false} onChange={v=> setState({...state, exercise: Number(v)})}/>
                     </div>
                     <div className="QuestionWrapper2">
                         <p className="HealthStatQuestion">much downtime you had today?</p> <SelectPicker searchable={false} size="md" data={dataValues} cleanable={false} onChange={v=> setState({...state, time: Number(v)})}/>

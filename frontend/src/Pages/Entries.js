@@ -13,27 +13,16 @@ import time from '../res/time.svg'
 import { Calendar , Modal} from 'rsuite';
 
 const EntriesPage = () => {
-
-    const [state, setState] =  useState({showModal: false, title: "", entryDate: "", entry: "", mood: 1, sleep: 1, exercise: 1, time: 1, food: 1, allEntries: [], month: "", year: ""})
+    const now = new Date(Date.now());
+    const month = now.getMonth() +1;
+    const year = now.getFullYear();
+    const [state, setState] =  useState({showModal: false, title: "", entryDate: "", entry: "", mood: 1, sleep: 1, exercise: 1, time: 1, food: 1, allEntries: [], month: month, year: year})
     const launchModal = (title, mood, date, entry, exersize, sleep, food, time) => {
-        setState({showModal: true, title: title, entryDate: date, entry: entry, mood: mood, sleep: sleep, exercise: exersize, time: time, food: food, allEntries: state.allEntries})
+        setState({showModal: true, title: title, entryDate: date, entry: entry, mood: mood, sleep: sleep, exercise: exersize, time: time, food: food, allEntries: state.allEntries, month: state.month, year: state.year})
     }
-
-    const moodIcons = [mood1, mood2, mood3, mood4, mood5]
-
-    useEffect(() => {
-        console.log(state)
-        setState(state)
-    });
-
+    const moodIcons = [mood1, mood2, mood3, mood4, mood5];
     const renderCell = (date) => {
         let myDate = new Date(Date.parse(date)); 
-        console.log(myDate.toDateString());
-        if( state.month == ""){
-            state.month = myDate.getMonth();
-            state.year = myDate.getFullYear();
-            setState(state);
-        }
 
         let theTitle = ""
         let theDate = ""
@@ -46,6 +35,8 @@ const EntriesPage = () => {
         
         for(const entry of state.allEntries){
             const entryDate = new Date(Date.parse(entry.date))
+            console.log(entryDate.toDateString())
+            console.log(myDate.toDateString())
             if( entryDate.toDateString() == myDate.toDateString() ){ // same day
                 theTitle = entry.title;
                 theDate = myDate.toDateString();
@@ -54,17 +45,15 @@ const EntriesPage = () => {
                 theSleep = entry.sleep;
                 theTime = entry.down_time;
                 theFood = entry.healthy_eating;
-                break;
+                theEntry = entry.entry;
+                return (
+                    <div onClick={e=> launchModal(theTitle, theMood, theDate, theEntry, theExersize, theSleep, theFood, theTime)}>
+                        <img src={moodIcons[Math.min( Math.max( Math.round(theMood)-1, 0), 4)]} className="CalenderFace"/>
+                        <p className="CalenderCellTitle">{theTitle}</p>
+                    </div>
+                )
             }
         }
-        
-        return (
-            <div onClick={e=> launchModal(theTitle, theMood, theDate, theEntry, theExersize, theSleep, theFood, theTime)}>
-                <img src={moodIcons[Math.min( Math.max( Math.round(state.avg_mood)-1, 0), 4)]} className="CalenderFace"/>
-                <p className="CalenderCellTitle">{theTitle}</p>
-            </div>
-        )
-        
     }
     console.log(state)
 
@@ -77,22 +66,20 @@ const EntriesPage = () => {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json);
+            console.log("json" , json);
             state.allEntries = json;
-            /*
-            state.allEntries = json;
-            setState(state)*/
+            setState(state)
         });
     }
 
-    getMonth()
+    getMonth(state.month, state.year)
 
     return (
         <div className="">
             <Modal show={state.showModal}>
                 <div className="EntryDisplayModal">
                     <div className="HorizontalWrapper">
-                        <p className="ModalEntryTitle"> <img className="FaceIconEntryModal" src={moodIcons[state.mood-1]} /> {state.title} ~ {state.entryDate} </p>
+                        <p className="ModalEntryTitle"> <img className="FaceIconEntryModal" src={moodIcons[Math.min( Math.max( Math.round(state.mood)-1, 0), 4)]} /> {state.title} ~ {state.entryDate} </p>
                     </div>
                     <div className="HealthStatWrapper">
                        <div className="SingleHeathDisplay"><img className="HealthStatIconDisplay" src={sleep}/>  <p className="HealthStatTextDisplay"> {state.sleep} </p> </div> 

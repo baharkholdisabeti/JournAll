@@ -22,7 +22,7 @@ const Stats = () => {
         'healthy_eating': 0, 
         'numberDays': 0
     })
-
+    
     useEffect(() => {
         setState(state)
     });
@@ -52,7 +52,7 @@ const Stats = () => {
         arrayInputs.forEach( (obj, inputIndex) => {
             arrayNames.forEach( (name, index ) => {
                 if( !isNaN( Number(obj[name])) ){
-                    ret[name] += +obj[name]
+                    ret[name] += obj[name]
                 }
             })
             count++ 
@@ -60,8 +60,8 @@ const Stats = () => {
 
         if( count > 0 ){
             arrayNames.forEach( (name ) => {
-                state[name] = (ret[name] / count).toFixed(2);
-                ret[name] = (ret[name] / count).toFixed(2);
+                state[name] = (ret[name] / count).toFixed(1);
+                ret[name] = (ret[name] / count).toFixed(1);
             })
             setState(state);
         }  
@@ -82,6 +82,7 @@ const Stats = () => {
         })
         .then(res => res.json())
         .then(json => {
+            console.log("json", json)
             calculateAverage(json, 
             ['avg_mood', 'healthy_eating', 'exercise', 'sleep', 'down_time']);
         });
@@ -89,7 +90,8 @@ const Stats = () => {
     
     getAvg();
     const moodImg = moods[ Math.min( Math.max( Math.round(state.avg_mood)-1, 0), 4) ]
-    console.log(Math.min( Math.max( Math.round(state.mood_avg)-1, 0), 4))
+    //console.log("mood:     ")
+    console.log(Math.min( Math.max( Math.round(state.avg_mood)-1, 0), 4))
     console.log(state.avg_mood)
 
     return (
@@ -107,7 +109,7 @@ const Stats = () => {
                     </div>
 
                     <div className="StatsLargeWrapper">
-                        <p className="MoodLabel"><img src={moodImg} />{state.mood_avg}</p>
+                        <p className="MoodLabel"><img src={moodImg} />{state.avg_mood}</p>
                         <p className="StatsLabelLarge">
                             Average Mood
                         </p>

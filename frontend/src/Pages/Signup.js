@@ -10,6 +10,7 @@ import './landing.css'
 // import exersize from '../res/exersize.svg'
 // import time from '../res/time.svg'
 import logo from '../res/logo.svg'
+import {Redirect} from 'react-router-dom'
 
 const Signup = () => {
     const [state, setState] = useState({
@@ -26,7 +27,7 @@ const Signup = () => {
         setState(state);
     };
 
-    handle_signup = (e, data) => {
+    const handle_signup = (e, data) => {
         e.preventDefault();
         fetch('http://localhost:8000/journal/users/', {
             method: 'POST',
@@ -38,6 +39,7 @@ const Signup = () => {
         .then(res => res.json())
         .then(json => {
             localStorage.setItem('token', json.token);
+            console.log('token')
             localStorage.setItem('id', json.id);
             setState({
                 logged_in: true,
