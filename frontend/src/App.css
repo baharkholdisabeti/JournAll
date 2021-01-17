@@ -6,3 +6,55 @@ input {
   display: block;
   margin: 5px 0 5px;
 }
+
+.NavBarWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFDDD2;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.NavLogo {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 35px;
+  color: #006D77;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.NavLogo:hover {
+  text-decoration: none;
+  color: #006D77;
+  font-weight: bold;
+}
+
+.NavItem {
+  line-height: 55px;
+  text-decoration: none;
+  margin: 0px 5px;
+  padding: 7px 25px;
+  font-size: 25px;
+  color: #006D77;
+  
+}
+
+.LogoImage{
+  margin-right: 12px;
+}
+
+.NavItem:hover {
+  background-color: #006D77;
+  border-radius: 30px;
+  color: #FFDDD2;
+  text-decoration: none;
+}

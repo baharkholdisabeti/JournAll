@@ -1,0 +1,399 @@
+* { 
+    box-sizing: border-box;
+}
+
+.SectionTitle {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 50px;
+    text-align: center;
+    color: #006D77;
+    margin-top: 100px;
+}
+
+.StepWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    margin-top: 34px;
+}
+
+.StepsWrapper{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.StepText {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 20px;
+}
+
+.EntryName {
+    width: 50%;
+    height: 40px;
+    margin-top: 40px;
+    border-radius: 4px;
+    border: #FFDDD2 3px solid;
+    font-size: 24px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.CompeleteIcon {
+    margin-top: 35px;
+    margin-left: 16px;
+    cursor: pointer;
+}
+
+.EntryStep {
+    background-color: #FFDDD2;
+}
+
+.CurrentIcon{
+    margin-left: 30px;
+}
+
+.StoriesCount {
+    font-size: 80px;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    display: inline;
+    width: 160px;
+}
+
+.StatsLabelLarge{
+    font-size: 40px;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.StatsLargeWrapper {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 16px;
+}
+
+.LargeStats{
+    margin-top: 32px;
+    margin-bottom: 50px;
+}
+
+.MoodLabel{
+    font-size: 25px;
+    width: 160px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.StatsSmallWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.StatsSmallLabel{
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+}
+
+.SpaceBetweenWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    margin-top: 40px;
+}
+
+.LoginWrapper {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    padding-top: 55px;
+    background-color: #EDF6F9;
+}
+.LoginBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 2px solid black;
+    height: 400px;
+    width: 400px;
+    background-color: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 8px;
+}
+
+.WelcomeBack {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 35px;
+    line-height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.LogoLogin{
+    height: 70px;
+    width: 70px;
+    margin-right: 16px;
+}
+
+.FormWrapper{
+    width: 80%;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.LoginSignupInput{
+    display: block;
+    width: 100%;
+    /*
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;*/
+    padding: 5px;
+}
+
+.InputWrapper {
+    margin-top: 16px;
+}
+
+.LoginButton {
+    background-color: #E1AD9C;
+    width: 96px;
+    text-align: center;
+    margin-top: 24px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    padding: 10px 15px;
+}
+
+.SignupLink {
+    color: black;
+    text-align: center;
+}
+
+.SliderImg {
+    margin-top: 16px;
+    width: 50px;
+    height: 50px;
+}
+
+div .rs-slider-bar:hover{
+    background-color: #E1AD9C;
+}
+
+.ModalContentWrapper {
+    background-color: aliceblue;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: black;
+    font-style: normal;
+    font-size: 50px;
+    font-weight: normal;
+    height: 270px;
+}
+
+.ModalContentWrapper2 {
+    background-color: aliceblue;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: black;
+    font-style: normal;
+    font-size: 50px;
+    font-weight: normal;
+    height: 380px;
+}
+
+.ModalContentWrapper3 {
+    background-color: aliceblue;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: black;
+    font-style: normal;
+    font-size: 50px;
+    font-weight: normal;
+    height: 340px;
+}
+
+.SliderContainer {
+    width: 250px;
+    margin-top: 56px;
+    margin-bottom: 80px;
+}
+
+.SliderMood {
+    font-size: 24px;
+}
+
+.SliderBar.rs-slider-bar{
+    background-color: #E1AD9C;
+}
+
+.rs-slider-handle::before{
+    border: 2px solid #E29578;
+}
+
+.ModalTitle {
+    padding-top: 16px;
+    font-size: 32px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.ModalNextArrow {
+   position: absolute;
+   right: 56px;
+}
+
+.HighLightStep:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.JournalEntry {
+    display: block;
+    margin-left: 5%;
+    width: 90%;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    height: 250px;
+    font-size: 16px;
+}
+
+.HealthStatQuestion {
+    display: inline;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.HealthStatQuestionPre {
+    font-size: 20px;
+    line-height: 32px;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.QuestionWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5%;
+    width: 90%;
+    height: 40px;
+}
+
+.QuestionWrapper2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10%;
+    width: 85%;
+    height: 40px;
+}
+
+.QuestionsWrapper {
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+.CalenderFace {
+    margin-top: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.CalenderCellTitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin-left: 5%;
+    width: 90%;
+}
+
+.FaceIconEntryModal {
+    width: 30px;
+    height: 30px;
+}
+
+.ModalEntryTitle {
+    font-size: 24px;
+    line-height: 30px;
+    color: black;
+}
+
+.ModalEntry {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.CloseButtonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.CloseButton {
+    background-color: #E1AD9C;
+    border-radius: 8px;
+    width: 56px;
+    height: 24px;
+    font-size: 16px;
+    color: #000;
+    margin-right: 5%;
+}
+
+.HealthStatIconDisplay {
+    height: 25px;
+    width: 25px;
+}
+
+.HealthStatTextDisplay {
+    display: inline;
+    font-size: 16px;
+    color: #000;
+    line-height: 25px;
+    margin-left: 8px;
+}
+
+
+.HealthStatWrapper {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 16px;
+}
+
+.SingleHeathDisplay {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.VideoName {
+    font-size: 16px;
+}
+
+.VideoIcon {
+    right: 30px;
+    position: absolute;
+}
+
+.VideoWrapper {
+    height: 50px;
+}

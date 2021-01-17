@@ -6,13 +6,14 @@ from django.contrib.auth.models import User
 class JournalSerializer(serializers.ModelSerializer):
     class Meta:
         model = JournalEntry
-        fields = ('entry_ID', 'user', 'date', 'entry', 'title', 'avg_mood', 'exercise', 'down_time', 'healthy_eating', 'sleep')
+        fields = ('entry_ID', 'user', 'date', 'entry', 'title', 'avg_mood', 'exercise', 'down_time', 'healthy_eating', 'sleep') 
+
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('id', 'username',)
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 

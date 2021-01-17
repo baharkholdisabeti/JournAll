@@ -1,0 +1,53 @@
+.LandingWrapper {
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.HorizontalWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: black;
+}
+
+.MeetText {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    line-height: 40px;
+    margin: 0;
+}
+
+.Title {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 80px;
+    line-height: 116px;
+    text-align: center;
+    margin: 0;
+    color: #006D77;
+}
+
+.Description {
+    font-size: 25px;
+    line-height: 40px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    width: 80%;
+    text-align: center;
+}
+
+.GetStartedLink{
+    width: 282px;
+    height: 48px;
+    font-family: 'Kaushan Script', cursive;
+    text-decoration: none;
+    background: #FFDDD2;
+    border-radius: 10px;
+    color:black;
+    font-size: 40px;
+    line-height: 48px;
+    margin-top: 30px;
+}

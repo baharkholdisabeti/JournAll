@@ -1,44 +1,59 @@
 from django.shortcuts import render
-from rest_framework import viewsets          
+from rest_framework import viewsets, filters       
 from .serializers import JournalSerializer     
 from .models import JournalEntry      
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken        
+from .serializers import UserSerializer, UserSerializerWithToken   
+from django.db.models import Avg, Max, Min     
 from datetime import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 class JournalView(viewsets.ModelViewSet):      
-    serializer_class = JournalSerializer          
-    queryset = JournalEntry.objects.all()  
+    serializer_class = JournalSerializer
+    queryset = JournalEntry.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'entry'];  
 
     def get_queryset(self):
         """
         Optionally restricts the returned purchases to a given user,
-        by filtering against a `username` query parameter in the URL.
+        by filtering against a `username` query parameter in the URL. 
+
+        Can search by title and entries with ?serach=search,queries,and,so,on
         """
         queryset = JournalEntry.objects.all()
-        user = self.request.query_params.get('user', None) 
         month = self.request.query_params.get('month', datetime.now().month) 
         year = self.request.query_params.get('year', datetime.now().year)
-        day = self.request.query_params.get('day', None) 
+        day = self.request.query_params.get('day', None)
         # localhost:8000/journal/?user=4&month=1&day=2
-        if user is not None:
-            if day is None:
-                #return by month
-                return queryset.filter(user=user, date__month=month, date__year=year) 
+        if self.request.user.is_authenticated:
+            if self.request.user.id == 1:
+                if day is None:
+                    #return by month
+                    return queryset.filter(date__month=month, date__year=year) 
+                else:
+                    #return a full day 
+                    return queryset.filter(date__day=day, date__month=month, date__year=year)
             else:
-                #return a full day 
-                return queryset.filter(user=user, date__day=day, date__month=month, date__year=year)
-        return 
+                if day is None:
+                    #return by month
+                    return queryset.filter(user=self.request.user, date__month=month, date__year=year) 
+                else:
+                    #return a full day 
+                    return queryset.filter(user=self.request.user, date__day=day, date__month=month, date__year=year)
+        return
 
 @api_view(['GET'])
 def current_user(request):
     """
     Determine the current user by their token, and return their data
     """
-    
+    logger.warning(request.user) 
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
 
