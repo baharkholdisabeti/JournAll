@@ -12,7 +12,46 @@ import './landing.css'
 import logo from '../res/logo.svg'
 
 const Signup = () => {
-    const numberDays = 75
+    const [state, setState] = useState({
+        username: '',
+        password: ''
+    })
+
+    const handle_change = e => {
+        const name = e.target.name;
+        const value = e.target.value;
+        state[name] = value;
+        console.log(state)
+        setState(state);
+    };
+
+    const handle_login = (e, data) => {
+        e.preventDefault();
+        console.log( data )
+        fetch('http://localhost:8000/token-auth/', {
+            method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(json => {
+            localStorage.setItem('token', json.token);
+            localStorage.setItem('id', json.user.id);
+            
+            setState({...state, logged_in: true})
+            console.log(state)
+        });
+    };
+
+    if( state["logged_in"] == true){
+        console.log("helloo")
+        return (
+            <Redirect to="/today" />
+        )
+    }
+
     return (
         <div className="LoginWrapper">
             <div className="LoginBox">

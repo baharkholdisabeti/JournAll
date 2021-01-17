@@ -390,10 +390,24 @@ div .rs-slider-bar:hover{
 }
 
 .VideoIcon {
-    right: 30px;
+    right: 0px;
     position: absolute;
 }
 
 .VideoWrapper {
     height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    width: 90%;
+}
+
+.VideosWrapper {
+    width: 80%
+}
+
+.RecosTitle {
+    margin-top: 24px;
+    font-size: 20px;
 }

@@ -10,9 +10,9 @@ import food from '../res/food.svg'
 import exersize from '../res/exersize.svg'
 import time from '../res/time.svg'
 import logo from '../res/logo.svg'
+import {Redirect} from 'react-router-dom'
 
 const Login = () => {
-    const numberDays = 75
     const [state, setState] = useState({
         logged_in: localStorage.getItem('token') ? true: false,
         username: '',
@@ -41,38 +41,27 @@ const Login = () => {
             .then(json => {
             localStorage.setItem('token', json.token);
             localStorage.setItem('id', json.user.id);
-            state["logged_in"] = true;
-            setState(state)
+            
+            setState({...state, logged_in: true})
+            console.log(state)
         });
     };
 
     if( state["logged_in"] == true){
+        console.log("helloo")
         return (
-            <div className="LoginWrapper">
-                <div className="LoginBox">
-                    <div className="HorizontalWrapper">
-                        <p className="WelcomeBack"> <img className="LogoLogin" src={logo}/> Welcome Back! </p>
-                    </div>
-                    <div className="HorizontalWrapper">
-                        <div className="FormWrapper">
-                            <div className="InputWrapper">
-                                You're logged in!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Redirect to="/today" />
         )
     }
 
     return (
         <div className="LoginWrapper">
+
             <div className="LoginBox">
                 <div className="HorizontalWrapper">
                     <p className="WelcomeBack"> <img className="LogoLogin" src={logo}/> Welcome Back! </p>
                 </div>
                 <div className="HorizontalWrapper">
-                    
 
                         <div className="FormWrapper">
                             <div className="InputWrapper">

@@ -65,23 +65,6 @@ const CustomSlider = ({val, onChange}) => {
     )
 }
 
-const ModalStep = (type, onComplete) => {
-    const [state, setState] = useState(true)
-    console.log(onComplete)
-    return (
-        <Modal show={true}>
-            <div className="ModalContentWrapper">
-                <p className="ModalTitle">How did you feel overall today?</p>
-                <CustomSlider />
-
-                <img className="ModalNextArrow" onClick={e=> onComplete(state)} src={arrow}/>
-            </div>
-            
-        </Modal>
-    )
-}
-
-
 
 
 const Today = () => {
@@ -102,6 +85,39 @@ const Today = () => {
     }
 
     
+    const handle_entry = (e) =>{
+        e.preventDefault();
+        /*
+        const form = e.target; 
+        Object.keys(entries).map( (name, i) => {
+            //validate and stuff 
+        });
+        const inputs;*/
+        submitForm(state);
+    }
+
+
+    const submitForm = (state) => {
+        if (props.logged_in) {
+            state['user'] = localStorage.getItem('id');
+            fetch('http://localhost:8000/journal/', {
+                method: 'POST',
+                headers: {
+                    Authorization: `JWT ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(state),
+            })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json);
+            })
+            .catch(e=>{console.log(e)});
+        }
+        else {
+            alert("please sign in");
+        }
+    }
 
     const launchModal = (type) => {
         if (type === 1 && is1Active) {
@@ -125,9 +141,7 @@ const Today = () => {
 
         const vid = (
         <div className="VideoWrapper" key={index}>
-            <p className="VideoName">{v.title} <img className="VideoIcon" src={videoIcon}/> 
-            </p>
-            
+            <p className="VideoName">{v.title} </p> <a target="_blank" href={v.link}><img className="VideoIcon" src={videoIcon}/> </a>
         </div>
         )
         return vid
@@ -198,17 +212,17 @@ const Today = () => {
                         
               <div className="HorizontalWrapper">
                   <input placeholder="Give Your Day a Title" onChange={e=> setState({...state, title: e.target.value})} className={`EntryName ${is4Active && "EntryStep"}`}/>
-                <a href="/about" className="CompeleteIcon"> <img src={completeIcon}/></a>
+                <a href="/about" > <img className="CompeleteIcon" onClick={e=> handle_entry(e)} src={completeIcon}/></a>
               </div>
 
-              <div className="HorizontalWrapper">
+              { state.videos.length && <div className="HorizontalWrapper">
                         
-            <div>
-                Based on what we got from you, here are some video suggestions...
+            <div className="VideosWrapper">
+                <p className="RecosTitle">Based on what we got from you, here are some video suggestions...</p>
                 {videos}
             </div>
             
-            </div>      
+            </div> }     
            
         </div> 
     )

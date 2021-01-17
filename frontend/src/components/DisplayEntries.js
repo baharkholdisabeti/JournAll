@@ -64,6 +64,8 @@ const DisplayEntries = (props) => {
         .then(res => res.json())
         .then(json => {
             console.log(json);
+            const {sleep, exercise, down_time, avg_mood, healthy_eating} = calculateAverage(JSON.parse(json), 
+            [ 'avg_mood', 'heathy_eating', 'exercise', 'sleep', 'down_time']);
             
             //const average_mood = Object.avg_mood(json)
             //.reduce((avg, { avg_mood }, _, { length }) => avg + avg_mood / length, 0);
@@ -79,7 +81,6 @@ const DisplayEntries = (props) => {
         const year = document.getElementById("year").value
         getAvg( month, year );
     }
-    
 
     return (
         <form id="theform">

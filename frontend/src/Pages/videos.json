@@ -1,0 +1,21 @@
+{
+    "sleep": [{"title": "Sleep Hygiene: Train your Brain to Fall Asleep and Sleep Better", "link": "https://www.youtube.com/watch?v=fk-_SwHhLLc"},
+    {"title": "This Is How You Get Better Sleep and Improve Your Health | Health Theory", "link": "https://www.youtube.com/watch?v=_2jLkMlDDYg&ab_channel=TomBilyeu"},
+    {"title": "How to Sleep Better", "link": "https://www.youtube.com/watch?v=3eLfn7Ewx_s&ab_channel=watchwellcast"},
+    {"title": "I burned out. Here's how I recovered.", "link": "https://www.youtube.com/watch?v=T8SpvrWNL6E&t=603s&ab_channel=ThomasFrank"},
+    {"title": "30 Minute Deep Sleep Music, Sleep Meditation, Calm Music, Relaxing Music, Fall Asleep, Relax, ☯3590B", "link": "https://www.youtube.com/watch?v=YojwmuZSbJk&ab_channel=YellowBrickCinema-RelaxingMusic"},
+    {"title": "Proven Sleep Tips | How to Fall Asleep Faster | Doctor Mike", "link":"https://www.youtube.com/watch?v=YvqeWcPwd2o&ab_channel=DoctorMike"}
+    ],
+    "time" : [    {"title": "How to Break Your Procrastination Habit (For Good)", "link": "https://www.youtube.com/watch?v=YokGiK29k74&ab_channel=ThomasFrank"},
+        {"title": "How to manage your time more effectively (according to machines) - Brian Christian", "link":"https://www.youtube.com/watch?v=iDbdXTMnOmE&ab_channel=TED-Ed"},
+        {"title": "How I organise my whole life in Notion", "link": "https://www.youtube.com/watch?v=4WDspvXDKSg&t=1012s&ab_channel=muchelleb"},
+        {"title":"3 Ideas for How to Spend your Free Time on Weekends", "link":"https://www.youtube.com/watch?v=PuUiyW9jXho&ab_channel=muchelleb"}],
+    "food" : [{"title": "How to Break Your Procrastination Habit (For Good)", "link": "https://www.youtube.com/watch?v=YokGiK29k74&ab_channel=ThomasFrank"},
+        {"title": "How to manage your time more effectively (according to machines) - Brian Christian", "link":"https://www.youtube.com/watch?v=iDbdXTMnOmE&ab_channel=TED-Ed"},
+        {"title": "How I organise my whole life in Notion", "link": "https://www.youtube.com/watch?v=4WDspvXDKSg&t=1012s&ab_channel=muchelleb"},
+        {"title":"3 Ideas for How to Spend your Free Time on Weekends", "link":"https://www.youtube.com/watch?v=PuUiyW9jXho&ab_channel=muchelleb"}],
+    "exersize" : [{"title": "How to Break Your Procrastination Habit (For Good)", "link": "https://www.youtube.com/watch?v=YokGiK29k74&ab_channel=ThomasFrank"},
+        {"title": "How to manage your time more effectively (according to machines) - Brian Christian", "link":"https://www.youtube.com/watch?v=iDbdXTMnOmE&ab_channel=TED-Ed"},
+        {"title": "How I organise my whole life in Notion", "link": "https://www.youtube.com/watch?v=4WDspvXDKSg&t=1012s&ab_channel=muchelleb"},
+        {"title":"3 Ideas for How to Spend your Free Time on Weekends", "link":"https://www.youtube.com/watch?v=PuUiyW9jXho&ab_channel=muchelleb"}]
+}
