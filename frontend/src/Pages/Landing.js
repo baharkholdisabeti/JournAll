@@ -13,7 +13,7 @@ const Landing = () => {
               giving Youtube suggestions:) </p>
               </div>
               <div className="HorizontalWrapper">
-                <a className="GetStartedLink" href="/today">Get Started </a>
+                <a className="GetStartedLink" href="/signup">Get Started </a>
               </div>
         </div> 
         </div>

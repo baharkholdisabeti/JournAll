@@ -13,6 +13,7 @@ import logo from '../res/logo.svg'
 
 const Signup = () => {
     const [state, setState] = useState({
+        logged_in: localStorage.getItem('token') ? true : false,
         username: '',
         password: ''
     })
@@ -25,23 +26,24 @@ const Signup = () => {
         setState(state);
     };
 
-    const handle_login = (e, data) => {
+    handle_signup = (e, data) => {
         e.preventDefault();
-        console.log( data )
-        fetch('http://localhost:8000/token-auth/', {
+        fetch('http://localhost:8000/journal/users/', {
             method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(res => res.json())
-            .then(json => {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(json => {
             localStorage.setItem('token', json.token);
-            localStorage.setItem('id', json.user.id);
-            
-            setState({...state, logged_in: true})
-            console.log(state)
+            localStorage.setItem('id', json.id);
+            setState({
+                logged_in: true,
+                displayed_form: 'entry',
+                username: json.username
+            });
         });
     };
 
@@ -62,16 +64,16 @@ const Signup = () => {
                     <div className="FormWrapper">
                         <div className="InputWrapper">
                             Username
-                            <input className="LoginSignupInput"/>
+                            <input className="LoginSignupInput" name="username" onChange={handle_change}/>
                         </div>
                         
                         <div className="InputWrapper">
                             Password
-                            <input type='password' className="LoginSignupInput"/>
+                            <input type='password' className="LoginSignupInput" name="password" onChange={handle_change}/>
                         </div>
 
                         <div className="HorizontalWrapper">
-                            <div className="LoginButton">
+                            <div className="LoginButton" onClick={(e) => handle_signup(e, state)}>
                                 Signup
                             </div>
                         </div>

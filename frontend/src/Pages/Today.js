@@ -66,13 +66,21 @@ const CustomSlider = ({val, onChange}) => {
 }
 
 
+/* 
+const getRecomendedVideos = (obj) => {
+    const = [[sleep, 3], [exersize]]
+}
+
+*/
+
+
 
 const Today = () => {
     const videosArr = [{title: "The movie", link:"https://www.youtube.com/watch?v=W9BjUoot2Eo&ab_channel=DennisIvy"},
     {title: "The movie", link: "https://www.youtube.com/watch?v=W9BjUoot2Eo&ab_channel=DennisIvy"},
     {title: "The movie", link: "https://www.youtube.com/watch?v=W9BjUoot2Eo&ab_channel=DennisIvy"} ]
 
-    const [state, setState] = useState({activeStep: 1, mood: 3, entry: "", sleep: 3, exersize: 3, time: 3, food: 3, title: "", showModal: false, videos: videosArr})
+    const [state, setState] = useState({activeStep: 1, mood: 3, entry: "", sleep: 3, exersize: 3, time: 3, food: 3, title: "", showModal: false, videos: []})
     console.log(state)
     const is1Active = state.activeStep === 1
     const is2Active = state.activeStep === 2
@@ -87,12 +95,6 @@ const Today = () => {
     
     const handle_entry = (e) =>{
         e.preventDefault();
-        /*
-        const form = e.target; 
-        Object.keys(entries).map( (name, i) => {
-            //validate and stuff 
-        });
-        const inputs;*/
         submitForm(state);
     }
 

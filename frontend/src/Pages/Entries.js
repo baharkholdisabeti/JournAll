@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from "react";
-
 import 'rsuite/dist/styles/rsuite-default.css';
-
 import mood1 from '../res/mood-1.svg'
 import mood2 from '../res/mood-2.svg'
 import mood3 from '../res/mood-3.svg'
@@ -45,8 +43,6 @@ const EntriesPage = () => {
         let theSleep = 0
         let theTime = 0
         let theFood = 0
-
-        
         
         for(const entry of state.allEntries){
             const entryDate = new Date(Date.parse(entry.date))
@@ -103,7 +99,6 @@ const EntriesPage = () => {
                        <div className="SingleHeathDisplay"><img className="HealthStatIconDisplay" src={exersize}/>  <p className="HealthStatTextDisplay"> {state.exercise} </p> </div> 
                        <div className="SingleHeathDisplay"><img className="HealthStatIconDisplay" src={time}/>  <p className="HealthStatTextDisplay"> {state.time} </p> </div> 
                        <div className="SingleHeathDisplay"><img className="HealthStatIconDisplay" src={food}/>  <p className="HealthStatTextDisplay"> {state.food} </p> </div> 
-
                     </div>
                     <div className="ModalEntry">
                         {state.entry}

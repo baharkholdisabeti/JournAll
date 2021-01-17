@@ -47,27 +47,6 @@ class App extends Component {
         localStorage.removeItem('token');
         this.setState({ logged_in: false, displayed_form:'', username: '' });
     };
-    
-    handle_signup = (e, data) => {
-        e.preventDefault();
-        fetch('http://localhost:8000/journal/users/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(json => {
-            localStorage.setItem('token', json.token);
-            localStorage.setItem('id', json.id);
-            this.setState({
-            logged_in: true,
-            displayed_form: 'entry',
-            username: json.username
-            });
-        });
-    };
 
     display_form = form => {
         this.setState({
